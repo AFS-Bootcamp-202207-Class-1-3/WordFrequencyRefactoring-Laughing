@@ -13,7 +13,6 @@ public class WordFrequencyGame {
         } else {
 
             try {
-
                 //split the input string with 1 to n pieces of spaces
                 String[] words = inputStr.split("\\s+");
 
@@ -21,14 +20,8 @@ public class WordFrequencyGame {
 
                 List<WordFrequency> wordList=getOrderedWordFrequencyList(mapWordAndFrequency);
 
-                StringJoiner joiner = new StringJoiner("\n");
-                for (WordFrequency wordFrequency : wordList) {
-                    String s = wordFrequency.getValue() + " " + wordFrequency.getWordCount();
-                    joiner.add(s);
-                }
-                return joiner.toString();
+                return generateWordFrequencyListString(wordList);
             } catch (Exception e) {
-
 
                 return "Calculate Error";
             }
@@ -58,4 +51,12 @@ public class WordFrequencyGame {
         return wordList;
     }
 
+    private String generateWordFrequencyListString(List<WordFrequency> wordList){
+        StringJoiner joiner = new StringJoiner("\n");
+        for (WordFrequency wordFrequency : wordList) {
+            String s = wordFrequency.getValue() + " " + wordFrequency.getWordCount();
+            joiner.add(s);
+        }
+        return joiner.toString();
+    }
 }
