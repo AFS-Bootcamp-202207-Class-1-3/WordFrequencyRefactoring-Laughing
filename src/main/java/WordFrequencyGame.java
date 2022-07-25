@@ -19,13 +19,7 @@ public class WordFrequencyGame {
 
                 Map<String, Integer> mapWordAndFrequency = getWordAndFrequencyMap(words);
 
-                List<WordFrequency> wordList = new ArrayList<>();
-
-                for (Map.Entry<String, Integer> entryWordAndFrequency : mapWordAndFrequency.entrySet()) {
-                    wordList.add(new WordFrequency(entryWordAndFrequency.getKey(), entryWordAndFrequency.getValue()));
-                }
-
-                wordList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
+                List<WordFrequency> wordList=getOrderedWordFrequencyList(mapWordAndFrequency);
 
                 StringJoiner joiner = new StringJoiner("\n");
                 for (WordFrequency wordFrequency : wordList) {
@@ -52,5 +46,16 @@ public class WordFrequencyGame {
        return WordAndFrequencyMap;
     }
 
+    private List<WordFrequency> getOrderedWordFrequencyList(Map<String,Integer> mapWordAndFrequency){
+        List<WordFrequency> wordList = new ArrayList<>();
+
+        for (Map.Entry<String, Integer> entryWordAndFrequency : mapWordAndFrequency.entrySet()) {
+            wordList.add(new WordFrequency(entryWordAndFrequency.getKey(), entryWordAndFrequency.getValue()));
+        }
+
+        wordList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
+
+        return wordList;
+    }
 
 }
